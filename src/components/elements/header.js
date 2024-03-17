@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -101,7 +101,9 @@ export default function Header({ user }) {
             {/* HAMBURGER MENU - Mobile menu button */}
             <button
               type="button"
-              className="relative inline-flex items-center justify-center rounded-md p-2 hover:bg-sky-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500"
+              className={`${
+                openItem === "mobile-menu" ? "bg-sky-700 text-white" : ""
+              } relative inline-flex items-center justify-center rounded-md p-2 hover:bg-sky-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500`}
               aria-controls="mobile-menu"
               aria-expanded="false"
               onClick={() =>
@@ -153,11 +155,12 @@ export default function Header({ user }) {
               </svg>
             </button>
           </div>
+
           <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div>
               <Link
                 href="/"
-                className="group flex flex-row flex-nowrap items-center mr-6"
+                className="group flex flex-row flex-nowrap items-center"
               >
                 <LogoSymbol classname="w-10 h-10 group-hover:scale-110 transition-all" />
                 {pathname !== "/" && (
@@ -197,7 +200,7 @@ export default function Header({ user }) {
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <button
                 type="button"
-                className="relative rounded-full p-2 hover:bg-sky-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 transition-all ease-in-out"
+                className="hidden sm:inline-block relative rounded-full p-2 hover:bg-sky-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 transition-all ease-in-out"
               >
                 <span className="absolute -inset-1.5"></span>
                 <span className="sr-only">View notifications</span>
@@ -303,7 +306,7 @@ export default function Header({ user }) {
               </div>
             </div>
           ) : (
-            <div>
+            <div className="absolute right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <Link
                 href="/signIn"
                 className="btn text-sm md:text-base"
@@ -316,9 +319,13 @@ export default function Header({ user }) {
         </div>
       </div>
 
-      {/* MOBILE MENU, show/hide based on 'openItem' state. */}
+      {/* MOBILE MENU, show/hide based on 'openItem==="mobile-menu"' state. */}
       <div
-        className={openItem === "mobile-menu" ? "sm:hidden" : "hidden"}
+        className={
+          openItem === "mobile-menu"
+            ? "sm:hidden bg-sky-100/80 backdrop-blur-sm"
+            : "hidden"
+        }
         id="mobile-menu"
       >
         <div className="space-y-1 px-2 pb-3 pt-2">
@@ -326,7 +333,14 @@ export default function Header({ user }) {
             <Link
               key={v.name}
               href={v.link}
-              onClick={() => setOpenItem("")}
+              onClick={(e) => {
+                setOpenItem("");
+                if (v.name === "sign-in") {
+                  signIn();
+                } else if (v.name === "sign-out") {
+                  signOut();
+                }
+              }}
               className={`${
                 pathname.includes(v.name) ||
                 (pathname === "/" && v.name === "home") ||
@@ -349,6 +363,7 @@ const menuItems = {
     { name: "home", link: "/" },
     { name: "blog", link: "/blog" },
     { name: "contacts", link: "/contacts" },
+    { name: "sign-in", link: "#" },
   ],
   loggedIn: [
     { name: "home", link: "/user" },

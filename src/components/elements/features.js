@@ -27,15 +27,15 @@ export default function Features() {
       ></div>
       <div className="absolute left-0 right-0 m-auto w-px p-px h-20 bg-gray-200 transform -translate-y-1/2"></div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="relative max-w-screen-xl mx-auto px-4 sm:px-6">
         <div className="pt-12 md:pt-20">
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-16">
-            <h1 className="h2 mb-4">Explore the product features</h1>
-            <p className="text-xl text-gray-600">
+            <h2>Explore the product features</h2>
+            <h3>
               A robust security portal that integrates with the common security
               hardware to organize your security operations and manage data
-            </p>
+            </h3>
           </div>
 
           {/* Section content */}
@@ -155,7 +155,7 @@ export default function Features() {
 
             {/* Tabs items */}
             <div
-              className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 mb-8 md:mb-0 md:order-1"
+              className="max-w-xl md:max-w-none md:w-full mx-auto md:col-span-5 lg:col-span-6 md:mt-8 md:order-1"
               data-aos="zoom-y-out"
               ref={tabs}
             >
@@ -180,14 +180,14 @@ export default function Features() {
                       height="462"
                       alt="Features bg"
                     />
-                    <img
+                    {/* <img
                       className="md:max-w-none absolute w-full left-0 transform animate-float"
                       src="/images/security-landscape.jpeg"
                       width="500"
                       height="44"
                       alt="Element"
                       style={{ top: "30%" }}
-                    />
+                    /> */}
                   </div>
                 </Transition>
                 {/* Item 2 */}
@@ -210,14 +210,14 @@ export default function Features() {
                       height="462"
                       alt="Features bg"
                     />
-                    <img
+                    {/* <img
                       className="md:max-w-none absolute w-full left-0 transform animate-float"
                       src="/images/security-data-unification.jpeg"
                       width="500"
                       height="44"
                       alt="Element"
                       style={{ top: "30%" }}
-                    />
+                    /> */}
                   </div>
                 </Transition>
                 {/* Item 3 */}
@@ -240,14 +240,14 @@ export default function Features() {
                       height="462"
                       alt="Features bg"
                     />
-                    <img
+                    {/* <img
                       className="md:max-w-none absolute w-full left-0 transform animate-float"
                       src="/images/security-alerts.jpeg"
                       width="500"
                       height="44"
                       alt="Element"
                       style={{ top: "30%" }}
-                    />
+                    /> */}
                   </div>
                 </Transition>
               </div>
