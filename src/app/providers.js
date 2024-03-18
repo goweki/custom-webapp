@@ -4,7 +4,7 @@ import { ThemeProvider, useTheme } from "next-themes";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 import AOS from "aos";
-import Loading from "@/components/atoms/loading";
+import Loader from "@/components/atoms/loader";
 
 export default function Providers({ children }) {
   const [UIstate, setUIstate] = useState("loading");
@@ -28,7 +28,13 @@ export default function Providers({ children }) {
     <ThemeProvider enableSystem={true} attribute="class">
       <React.StrictMode>
         <SessionProvider>
-          {UIstate === "loading" ? <Loading classname="w-12 h-12" /> : children}
+          {UIstate === "loading" ? (
+            <div className="flex items-center justify-center m-auto">
+              <Loader />
+            </div>
+          ) : (
+            children
+          )}
           <Toaster />
         </SessionProvider>
       </React.StrictMode>

@@ -1,8 +1,12 @@
+import UserSummary from "@/components/elements/user/userSummary";
+import UserAnalytics from "@/components/elements/user/userAnalytics";
+
 export default function UserPage() {
   //render
   return (
-    <main className="pt-20 min-h-80 max-w-screen-xl mx-auto flex-1">
-      You are logged in: User Page
+    <main className="w-full flex-col min-h-[512px] pt-20 pb-6 px-2 sm:px-6 md:px-12 max-w-screen-xl mx-auto">
+      <UserSummary />
+      <UserAnalytics />
     </main>
   );
 }
